@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="detail-block">
+    <p>Название книги: <h3>{{ book.name }}</h3></p>
+    <p>
+        Авторы:
+        <ul>
+            {% for author in book.authors %}
+                <li><h4><a href="{{ url_for('books.author_details', author_id=author.id) }}">{{ author.name }}</a></h4></li>
+            {% endfor %}
+        </ul>
+    </p>
+    {% if g.user %}
+        <div id="perm_block">
+        <p>
+            <a href="{{ url_for('books.edit_book', book_id=book.id) }}">Редактировать</a>
+        </p>
+        </div>
+    {% endif %}
+    </div>
+{% endblock %}

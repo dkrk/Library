@@ -1,0 +1,274 @@
+
+
+body {
+    font-family: Arial,serif;
+
+}
+div#wrapper {
+
+    margin: 0 auto;
+    width: 800px;
+    min-height: 600px;
+    background-color: #87CEFA;
+}
+
+div#top_block {
+    position: relative;
+    margin: 0 auto;
+    width: 760px;
+    min-height: 80px;
+}
+
+div#user_block {
+    position: relative;
+    width: 320px;
+    height: 50px;
+    margin: 5px 15px 5px 0px;
+    padding: 10px;
+    float: right;
+    background-color: #1E90FF;
+}
+
+form#searchbox {
+    height: 50px;
+    position: relative;
+    margin: 5px 15px 5px 15px;
+    padding: 10px;
+    float: left;
+    background-color: #1E90FF;
+}
+
+input#search-input {
+    padding: 0 0 0 5px;
+    border: none;
+    font: 14px normal;
+}
+
+div#form_button input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    opacity: 0;
+    cursor: pointer;
+    font-size: 1px;
+}
+
+input[type=submit] {
+    border: 0;
+    background-color: #D7D8DA;
+    font: 14px normal;
+    font-family: Arial, serif;
+    text-align: center;
+    cursor: pointer;
+}
+
+div#form_button {
+    bottom: 0px;
+    width: 100%;
+    height: 16px;
+    position: relative;
+    margin-top: 10px ;
+}
+
+div#form_button label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #D7D8DA;
+    border-radius: 0px;
+    font: 14px normal;
+    font-family: Arial, serif;
+    text-align: center;
+
+    border: 0px;
+}
+
+form#searchbox label{
+    font-size: 14px;
+    font-family: Arial, serif;
+}
+
+
+
+
+div#wrapper_content{
+    margin: 0 auto;
+    width: 760px;
+}
+
+div#wrapper_index {
+    position: relative;
+    min-height: 480px;
+    background-color: #1E90FF;
+    margin: 5px 15px 5px 15px;
+    padding: 10px;
+}
+
+#login_autorized {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 16px;
+    z-index: 100;
+}
+
+#user_block a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+#user_block p {
+    display: block;
+}
+
+#user_block p {
+    margin: 4px;
+    padding: 0;
+    font-size: 12px;
+}
+
+.error {
+    padding: 0px;
+    margin: 0px;
+    background-color: #ff0000;
+    color: #FFFFFF;
+    width: 100%;
+}
+
+a.logout {
+    float: right;
+}
+
+p#user {
+    font-size: 16px;
+}
+
+a:hover {
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+input[type=text], input[type=password] {
+    padding: 0 0 0 5px;
+    border: none;
+    font: 14px normal;
+}
+
+td.delete {
+    text-align: center;
+}
+
+.box-table-a
+{
+	font-size: 12px;
+	margin: 0px;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+.box-table-a th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe;
+	border-top: 4px solid #aabcfe;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+.box-table-a td
+{
+	padding: 8px;
+	background: #e8edff;
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid transparent;
+}
+
+.box-table-a tr {
+    height: 34px;
+}
+
+.box-table-a tr:hover td
+{
+	background: #d0dafd;
+	color: #339;
+}
+
+.box-table-a a {
+    text-decoration: none;
+    color: black;
+}
+
+.box-table-a td.delete, .box-table-a td.edit {
+    width: 50px;
+}
+
+.box-table-a td.edit a{
+    color: #fee4ff;
+}
+
+.box-table-a tr:hover td.edit a{
+    color: #000000;
+}
+
+
+form#form-login, form#form-register {
+    position: relative;
+    margin: 20px auto;
+    width: 300px;
+
+}
+
+form#books-form {
+    position: relative;
+    margin: 20px auto;
+    width: 300px;
+}
+
+#form-login-fields, #form-register-fields{
+    width: 100%;
+    list-style: none;
+    padding: 0px;
+}
+#form-login-fields li input, #form-register-fields li input, #books-form li input, #books-form select {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+#form-login-fields ul, #form-register-fields ul, #books-form ul {
+    list-style: none;
+    padding: 0px;
+}
+
+
+#form-login input[type=submit], #form-register input[type=submit], #books-form input[type=submit]{
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+form#form-main span.del-rows {
+    cursor: pointer;
+}
+
+#ui-id-1 {
+    font-size: 12px;
+}
+
+div#detail-block {
+    background: #e8edff;
+    padding: 10px;
+    width: 500px;
+    margin: 30px auto;
+}

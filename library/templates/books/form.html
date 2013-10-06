@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form method="POST" action="." id="books-form">
+    {{ form.hidden_tag()}}
+    <ul>
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        <li>{{ field.label }}</li>
+        <li>{{ field }}</li>
+        {% if field.errors %}
+            <ul>
+            {% for error in field.errors %}
+                <li class="error">{{ error|e }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <input type="submit" value="Добавить">
+    </form>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block extrajs %}
+    <script type="text/javascript">
+        $(function(){
+            $('span.del-rows').click(function () {
+                $('#form-main').submit()
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% if g.user %}
+        <form action="." method="POST" id="form-main">
+    {% endif %}
+    <div id="books">
+        <h3>Список Книг</h3>
+        <table class="box-table-a">
+        <thead>
+            <tr>
+                <th>Название</th>{% if g.user %}<th><span class="del-rows">Удалить</span></th><th></th>{% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% if not g.user %}
+        {% for book in books %}
+            <tr>
+                <td><a href="{{ url_for('books.book_details', book_id=book.id) }}">{{ book.name }}</a></td>
+            </tr>
+        {% else %}
+            Нету Книг
+        {% endfor %}
+        {% else %}
+            {% for book in books %}
+                <tr>
+                    <td><a href="{{ url_for('books.book_details', book_id=book.id) }}">{{ book.name }}</a></td><td class="delete"><input type="checkbox" name="books_delete" value="{{ book.id }}" /></td><td class="edit"><a href="{{ url_for('books.edit_book', book_id=book.id) }}">правит</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+        </table>
+    </div>
+    <div id="authors">
+        <h3>Список Авторов</h3>
+        <table class="box-table-a">
+        <thead>
+            <tr>
+                <th>Название</th>{% if g.user %}<th><span class="del-rows">Удалить</span></th><th></th>{% endif %}
+            </tr>
+        </thead>
+        <tbody>
+        {% if not g.user %}
+        {% for author in authors %}
+            <tr>
+                <td><a href="{{ url_for('books.author_details', author_id=author.id) }}">{{ author.name }}</a></td>
+            </tr>
+        {% else %}
+            Нету Записей об Авторах
+        {% endfor %}
+        {% else %}
+            {% for author in authors %}
+                <tr>
+                    <td><a href="{{ url_for('books.author_details', author_id=author.id) }}">{{ author.name }}</a></td><td class="delete"><input type="checkbox" name="authors_delete" value="{{ author.id }}" /></td><td class="edit"><a href="{{ url_for('books.edit_author', author_id=author.id) }}">правит</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+        </table>
+    </div>
+    {% if g.user %}
+        </form>
+    {% endif %}
+
+{% endblock %}

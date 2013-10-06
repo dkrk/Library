@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h3>Строка запроса "{{ query }}"</h3>
+    <h2>Результаты поиска</h2>
+    <hr/>
+    {% if result %}
+    <table class="box-table-a">
+    <tbody>
+    {% for entry in result %}
+        <tr>
+            <td><a href="{{ entry.get_url() }}">{{ entry }}</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+    {% else %}
+    <h2>Поиск не дал результатов</h2>
+    {% endif %}
+{% endblock %}

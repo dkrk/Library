@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang='ru' xml:lang='ru'>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Online Library{% endblock %}</title>
+    {% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    {% endblock %}
+    {% block extra_css %}{% endblock %}
+    {% block js %}
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#search-input').autocomplete(
+                {
+                    autoFocus: true,
+                    source: function (request, response) {
+                        $.getJSON("{{ url_for('books.live_search')}}?term=" + request.term,
+                            function (data) {
+                                response(data.result);
+                            });
+                    }
+                }
+            )
+        });
+    </script>
+    {% endblock %}
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+        <script type="text/javascript">
+            $(function(){
+                $('#user-messages-wrapper').dialog({
+                    minWidth: 400,
+                    modal: true,
+                    buttons:{
+                        "Закрыть": function(){
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+        </script>
+        <div id="user-messages-wrapper" title="Сообщение пользователю">
+            <div id="user-messages">
+                {% for category, message in messages%}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    {% endwith %}
+    <div id="wrapper">
+        <div id="top_block">
+            <div id="site_header">
+                <form id="searchbox" name="site_search" action="{{ url_for('books.search') }}" method="POST">
+                    <label for="search-input">Искать</label>
+                    <input type="text" name="q" id="search-input"/>
+                    <input type="checkbox" name="chkBook" id="chkBook" value="Book" {% if session.has_key('chkBook') %}{% if session['chkBook'] %} checked{% endif %}{% else %} checked{% endif %}/>
+                    <label for="chkBook">Книгу</label>
+                    <input type="checkbox" name="chkAuthor" id="chkAuthor" value="Author" {% if session.has_key('chkAuthor') %}{% if session['chkAuthor'] %} checked{% endif %}{% else %} checked{% endif %}/>
+                    <label for="chkAuthor">Автора</label>
+                    <div id="form_button">
+                        <input type="submit" />
+                        <label>Найти</label>
+                    </div>
+                </form>
+                <div id="user_block">
+                    {% if not g.user %}
+                        <div id="login-block">
+                            <p>
+                                <a class="login" href="{{ url_for('users.login', next=request.path) }}">Login</a> |
+                                <a class="Register" href="{{ url_for('users.register', next=request.path) }}">Register</a>
+                            </p>
+                        </div>
+                    {% else %}
+                        <div id="login_autorized">
+                            <p id="user">
+                                <a href="{{ url_for('users.profile') }}">{{ g.user.name }} | {{ g.user.email }}</a>
+                            </p>
+                            <p>
+                                <a class="logout" href="{{ url_for('users.logout', next=request.path) }}">Logout</a>
+                            </p>
+                            <p>
+                                <a href="{{ url_for("books.add_book") }}">Добавить Книгу</a>|
+                                <a href="{{ url_for("books.add_author") }}">Добавить Автора</a>
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div id="wrapper_content">
+            <div id="wrapper_index">
+                <a href="/">Home</a>
+                <hr>
+                {% block content %}
+                    Welcme To main page!
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    {% block extrajs %}
+    {% endblock %}
+</body>
+</html>
